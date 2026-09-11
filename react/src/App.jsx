@@ -29,6 +29,7 @@ function smoothScrollTo(id) {
 /* ---------------- Scroll progress bar ---------------- */
 function ScrollProgress() {
   const [width, setWidth] = useState(0);
+
   useEffect(() => {
     const onScroll = () => {
       const h = document.documentElement;
@@ -39,12 +40,14 @@ function ScrollProgress() {
     onScroll();
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
+
   return (
     <div
       role="progressbar"
       aria-valuenow={Math.round(width)}
       aria-valuemin={0}
       aria-valuemax={100}
+      aria-label="Page scroll progress"
       className="fixed top-0 left-0 h-[2px] bg-grad-primary z-[60] transition-all duration-75"
       style={{ width: `${width}%` }}
     />
@@ -63,7 +66,6 @@ function Navbar() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // Close mobile navigation on Escape key
   useEffect(() => {
     const handleKeyDown = (e) => {
       if (e.key === "Escape") setMenuOpen(false);
@@ -159,15 +161,18 @@ function Counter({ target, suffix = "+" }) {
   useEffect(() => {
     if (!visible) return;
     if (prefersReducedMotion()) { setValue(target); return; }
+
     const duration = 1400;
     const start = performance.now();
     let frame;
+
     const step = (now) => {
       const p = Math.min((now - start) / duration, 1);
       const eased = 1 - Math.pow(1 - p, 3);
       setValue(Math.round(eased * target));
       if (p < 1) frame = requestAnimationFrame(step);
     };
+
     frame = requestAnimationFrame(step);
     return () => cancelAnimationFrame(frame);
   }, [visible, target]);
@@ -184,26 +189,48 @@ function Hero() {
   const [typed, setTyped] = useState("");
 
   useEffect(() => {
-    if (prefersReducedMotion()) { setTyped(ROLES[0]); return; }
-    let roleIndex = 0, charIndex = 0, deleting = false, timeoutId;
-    const TYPE_SPEED = 65, DELETE_SPEED = 35, HOLD = 1400;
+    if (prefersReducedMotion()) { 
+      setTyped(ROLES[0]); 
+      return; 
+    }
+
+    let roleIndex = 0;
+    let charIndex = 0;
+    let deleting = false;
+    let timeoutId = null;
+
+    const TYPE_SPEED = 65;
+    const DELETE_SPEED = 35;
+    const HOLD = 1400;
 
     const tick = () => {
       const current = ROLES[roleIndex];
+      
       if (!deleting) {
         charIndex++;
         setTyped(current.slice(0, charIndex));
-        if (charIndex === current.length) { deleting = true; timeoutId = setTimeout(tick, HOLD); return; }
+        if (charIndex === current.length) {
+          deleting = true;
+          timeoutId = setTimeout(tick, HOLD);
+          return;
+        }
         timeoutId = setTimeout(tick, TYPE_SPEED);
       } else {
         charIndex--;
         setTyped(current.slice(0, charIndex));
-        if (charIndex === 0) { deleting = false; roleIndex = (roleIndex + 1) % ROLES.length; }
+        if (charIndex === 0) {
+          deleting = false;
+          roleIndex = (roleIndex + 1) % ROLES.length;
+        }
         timeoutId = setTimeout(tick, DELETE_SPEED);
       }
     };
+
     tick();
-    return () => clearTimeout(timeoutId);
+
+    return () => {
+      if (timeoutId) clearTimeout(timeoutId);
+    };
   }, []);
 
   return (
@@ -380,7 +407,7 @@ function Skills() {
 }
 
 /* ---------------- Projects ---------------- */
-function Project({ reverse, tag, tagColor, title, desc, previewLabel, previewGradient }) {
+function Project({ reverse, tag, tagColor, title, desc, previewLabel, previewGradient, liveUrl, codeUrl }) {
   return (
     <Reveal type="up" as="article" className="grid lg:grid-cols-2 gap-10 items-center">
       <div className={`project-frame ${reverse ? "order-1" : "order-2 lg:order-1"}`}>
@@ -394,8 +421,16 @@ function Project({ reverse, tag, tagColor, title, desc, previewLabel, previewGra
         <h3 className="font-display text-2xl font-semibold mt-3">{title}</h3>
         <p className="mt-3 text-fg-dim leading-relaxed max-w-md">{desc}</p>
         <div className="mt-5 flex gap-5 text-sm">
-          <a href="#" className="link-underline text-fg font-medium">Live site</a>
-          <a href="#" className="link-underline text-fg-dim">Source code</a>
+          {liveUrl && (
+            <a href={liveUrl} target="_blank" rel="noopener noreferrer" className="link-underline text-fg font-medium">
+              Live site
+            </a>
+          )}
+          {codeUrl && (
+            <a href={codeUrl} target="_blank" rel="noopener noreferrer" className="link-underline text-fg-dim">
+              Source code
+            </a>
+          )}
         </div>
       </div>
     </Reveal>
@@ -412,23 +447,35 @@ function Projects() {
         <div className="mt-16 space-y-20">
           <Project
             reverse
-            tag="Django · PWA · PostgreSQL" tagColor="#2dd4c4"
+            tag="Django · PWA · PostgreSQL" 
+            tagColor="#2dd4c4"
             title="EGC Learning Management System"
             desc="A multi-app Django platform at egccenter.site with offline-ready PWA support and a timer-based, auto-graded quiz engine, plus dedicated modules for fees, library, lectures, and attendance."
-            previewLabel="LMS preview" previewGradient="bg-grad-primary/10"
+            previewLabel="LMS preview" 
+            previewGradient="bg-grad-primary/10"
+            liveUrl="https://egccenter.site"
+            codeUrl="#"
           />
           <Project
-            tag="Flutter · Dart · UI/UX" tagColor="#22d3ee"
+            tag="Flutter · Dart · UI/UX" 
+            tagColor="#22d3ee"
             title="WaterLink"
             desc={'A water delivery app built around a navy-and-teal "Family of Blue" palette, with a swipeable onboarding flow and animated dot indicators for first-time users.'}
-            previewLabel="App preview" previewGradient="bg-grad-accent/10"
+            previewLabel="App preview" 
+            previewGradient="bg-grad-accent/10"
+            liveUrl="#"
+            codeUrl="#"
           />
           <Project
             reverse
-            tag="Design system" tagColor="#e23fd1"
+            tag="Design system" 
+            tagColor="#e23fd1"
             title="RSN Portfolio"
             desc="This site — a dark, animated single-page portfolio with scroll-triggered reveals, a live contact pipeline, and a component system built to be reused across future client sites."
-            previewLabel="Site preview" previewGradient="bg-grad-primary/10"
+            previewLabel="Site preview" 
+            previewGradient="bg-grad-primary/10"
+            liveUrl="https://rsnportfolio.site"
+            codeUrl="#"
           />
         </div>
       </div>
@@ -531,7 +578,7 @@ function Contact() {
         <Reveal type="up" delay={120} className="space-y-6">
           <div className="contact-card">
             <p className="text-xs font-mono uppercase tracking-wider text-fg-faint">Email</p>
-            <a href="mailto:hello@rsn.dev" className="mt-2 block text-fg font-medium link-underline">hello@rsn.dev</a>
+            <a href="mailto:hello@rsnportfolio.site" className="mt-2 block text-fg font-medium link-underline">hello@rsnportfolio.site</a>
           </div>
           <div className="contact-card">
             <p className="text-xs font-mono uppercase tracking-wider text-fg-faint">WhatsApp</p>
@@ -540,10 +587,10 @@ function Contact() {
           <div className="contact-card">
             <p className="text-xs font-mono uppercase tracking-wider text-fg-faint">Elsewhere</p>
             <div className="mt-3 flex gap-4">
-              <a href="#" className="social-icon" aria-label="GitHub">
+              <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="social-icon" aria-label="GitHub">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className="w-5 h-5" fill="currentColor" aria-hidden="true"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.09 3.29 9.4 7.86 10.93.57.1.78-.25.78-.55 0-.27-.01-1.16-.02-2.1-3.2.7-3.87-1.36-3.87-1.36-.53-1.34-1.29-1.7-1.29-1.7-1.05-.72.08-.71.08-.71 1.17.08 1.78 1.2 1.78 1.2 1.03 1.77 2.71 1.26 3.37.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.68 0-1.26.45-2.28 1.19-3.09-.12-.29-.52-1.46.11-3.04 0 0 .97-.31 3.18 1.18a11 11 0 015.79 0c2.2-1.49 3.17-1.18 3.17-1.18.64 1.58.24 2.75.12 3.04.74.81 1.19 1.83 1.19 3.09 0 4.41-2.69 5.39-5.25 5.67.41.36.78 1.06.78 2.14 0 1.55-.01 2.79-.01 3.17 0 .3.2.66.79.55A10.52 10.52 0 0023.5 12C23.5 5.65 18.35.5 12 .5z" /></svg>
               </a>
-              <a href="#" className="social-icon" aria-label="LinkedIn">
+              <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="social-icon" aria-label="LinkedIn">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className="w-5 h-5" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.58c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.68H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.38-1.85 3.61 0 4.28 2.38 4.28 5.47v6.27zM5.34 7.43a2.07 2.07 0 110-4.13 2.07 2.07 0 010 4.13zM7.12 20.45H3.56V9h3.56v11.45z" /></svg>
               </a>
             </div>
