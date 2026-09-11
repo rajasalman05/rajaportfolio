@@ -185,7 +185,7 @@ export default function ContactSection() {
 
             {/* LinkedIn Button */}
             <a
-              href="https://linkedin.com/in/rajasalmannadeem"
+              href="https://www.linkedin.com/in/rajasalmannadeem/"
               target="_blank"
               rel="noopener noreferrer"
               className="p-2.5 rounded-xl bg-slate-800/80 text-slate-300 hover:text-cyan-400 hover:bg-slate-800 transition-all text-xl"
