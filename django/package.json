@@ -1,0 +1,11 @@
+{
+  "name": "rsn-portfolio-django-styles",
+  "private": true,
+  "scripts": {
+    "build:css": "tailwindcss -i ./static/portfolio/css/input.css -o ./static/portfolio/css/tailwind.output.css --minify",
+    "watch:css": "tailwindcss -i ./static/portfolio/css/input.css -o ./static/portfolio/css/tailwind.output.css --watch"
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.4.0"
+  }
+}

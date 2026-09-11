@@ -1,0 +1,414 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Raja Salman Nadeem — Full-Stack Developer & UI/UX Designer</title>
+<meta name="description" content="RSN — Full-stack developer and UI/UX designer building fast, accessible web products end-to-end.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="{% static 'portfolio/css/tailwind.output.css' %}">
+<link rel="stylesheet" href="{% static 'portfolio/css/custom.css' %}">
+</head>
+<body class="bg-ink text-fg font-sans antialiased selection:bg-brand-teal/30 selection:text-white">
+
+<div id="scroll-progress" class="fixed top-0 left-0 h-[2px] bg-grad-primary z-[60]" style="width:0%"></div>
+
+<!-- NAVBAR -->
+<header id="navbar" class="fixed top-0 inset-x-0 z-50 transition-all duration-300">
+  <nav class="max-w-6xl mx-auto flex items-center justify-between px-6 lg:px-8 py-5 transition-all duration-300">
+    <a href="#home" class="flex items-center gap-2.5 group">
+      <span class="grid place-items-center w-9 h-9 rounded-xl bg-grad-primary text-ink font-display font-bold text-sm shadow-glow-teal group-hover:scale-105 transition-transform duration-300">RSN</span>
+      <span class="font-display font-semibold tracking-tight text-fg hidden sm:block">Raja Salman Nadeem</span>
+    </a>
+
+    <ul class="hidden md:flex items-center gap-8 text-sm text-fg-dim">
+      <li><a href="#about" class="nav-link">About</a></li>
+      <li><a href="#skills" class="nav-link">Skills</a></li>
+      <li><a href="#projects" class="nav-link">Projects</a></li>
+      <li><a href="#process" class="nav-link">Process</a></li>
+      <li><a href="#testimonials" class="nav-link">Testimonials</a></li>
+    </ul>
+
+    <a href="#contact" class="hidden md:inline-flex items-center gap-2 rounded-full border border-white/15 px-5 py-2.5 text-sm font-medium text-fg hover:border-brand-teal/60 hover:text-brand-teal hover:shadow-glow-teal transition-all duration-300">
+      Let's talk
+    </a>
+
+    <button id="menu-toggle" aria-label="Toggle menu" aria-expanded="false" class="md:hidden grid place-items-center w-10 h-10 rounded-lg border border-white/10 text-fg">
+      <svg id="menu-icon-open" xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
+      <svg id="menu-icon-close" xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+    </button>
+  </nav>
+
+  <div id="mobile-menu" class="md:hidden hidden bg-surface/95 backdrop-blur border-t border-white/8">
+    <ul class="flex flex-col px-6 py-4 gap-4 text-sm text-fg-dim">
+      <li><a href="#about" class="mobile-link">About</a></li>
+      <li><a href="#skills" class="mobile-link">Skills</a></li>
+      <li><a href="#projects" class="mobile-link">Projects</a></li>
+      <li><a href="#process" class="mobile-link">Process</a></li>
+      <li><a href="#testimonials" class="mobile-link">Testimonials</a></li>
+      <li><a href="#contact" class="mobile-link text-brand-teal">Let's talk →</a></li>
+    </ul>
+  </div>
+</header>
+
+<main>
+<!-- HERO -->
+<section id="home" class="relative overflow-hidden pt-40 pb-28 lg:pt-48 lg:pb-36">
+  <div class="glow-orb glow-orb--teal" aria-hidden="true"></div>
+  <div class="glow-orb glow-orb--magenta" aria-hidden="true"></div>
+
+  <div class="max-w-6xl mx-auto px-6 lg:px-8 grid lg:grid-cols-[1.15fr,0.85fr] gap-16 items-center">
+    <div data-reveal="up">
+      <div class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-surface/60 px-4 py-1.5 text-xs text-fg-dim mb-7">
+        <span class="relative flex w-2 h-2">
+          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-teal opacity-60"></span>
+          <span class="relative inline-flex rounded-full w-2 h-2 bg-brand-teal"></span>
+        </span>
+        Available for freelance work
+      </div>
+
+      <p class="text-fg-dim text-base sm:text-lg mb-3">Full-stack development &amp; interface design</p>
+      <h1 class="font-display font-semibold text-4xl sm:text-5xl lg:text-6xl leading-[1.08] tracking-tight">
+        <span class="bg-grad-primary bg-clip-text text-transparent">Raja Salman Nadeem</span>
+      </h1>
+
+      <p class="mt-5 text-lg sm:text-xl text-fg-dim h-8">
+        <span id="role-prefix">I work as a </span><span id="typed-role" class="text-fg font-medium"></span><span class="typed-cursor">|</span>
+      </p>
+
+      <p class="mt-6 max-w-lg text-fg-dim leading-relaxed">
+        I design and build fast, accessible products end-to-end — from Figma wireframes to production Django deployments. Recent work spans learning platforms, mobile apps, and brand systems.
+      </p>
+
+      <div class="mt-9 flex flex-wrap items-center gap-4">
+        <a href="#projects" class="btn-magnetic inline-flex items-center gap-2 rounded-full bg-grad-primary text-ink font-semibold px-7 py-3.5 text-sm shadow-glow-teal hover:shadow-[0_0_55px_-6px_rgba(45,212,196,.6)] transition-all duration-300">
+          View my work
+        </a>
+        <a href="#contact" class="btn-magnetic inline-flex items-center gap-2 rounded-full border border-white/15 px-7 py-3.5 text-sm font-medium text-fg hover:border-brand-magenta/60 hover:text-brand-magenta hover:shadow-glow-magenta transition-all duration-300">
+          Start a project
+        </a>
+      </div>
+
+      <div class="mt-12 grid grid-cols-3 max-w-sm gap-6 border-t border-white/8 pt-8">
+        <div>
+          <p class="font-display text-2xl font-semibold text-fg"><span class="counter" data-target="4">0</span>+</p>
+          <p class="text-xs text-fg-faint mt-1">Years experience</p>
+        </div>
+        <div>
+          <p class="font-display text-2xl font-semibold text-fg"><span class="counter" data-target="40">0</span>+</p>
+          <p class="text-xs text-fg-faint mt-1">Projects delivered</p>
+        </div>
+        <div>
+          <p class="font-display text-2xl font-semibold text-fg"><span class="counter" data-target="30">0</span>+</p>
+          <p class="text-xs text-fg-faint mt-1">Happy clients</p>
+        </div>
+      </div>
+    </div>
+
+    <div data-reveal="fade" data-delay="150" class="relative mx-auto w-full max-w-sm aspect-square">
+      <div class="hero-ring absolute inset-0 rounded-full"></div>
+      <div class="absolute inset-[14%] rounded-full bg-surface border border-white/10 grid place-items-center overflow-hidden shadow-2xl">
+        <span class="font-display text-6xl font-semibold bg-grad-accent bg-clip-text text-transparent">RSN</span>
+      </div>
+
+      <div class="float-badge float-badge--1 hidden sm:flex" style="top:6%; left:-8%;">React</div>
+      <div class="float-badge float-badge--2 hidden sm:flex" style="bottom:12%; left:-10%;">Django</div>
+      <div class="float-badge float-badge--3 hidden sm:flex" style="top:38%; right:-12%;">Figma</div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT / SERVICES -->
+<section id="about" class="py-28 border-t border-white/6">
+  <div class="max-w-6xl mx-auto px-6 lg:px-8">
+    <div class="grid lg:grid-cols-2 gap-14">
+      <div data-reveal="up">
+        <h2 class="font-display text-3xl sm:text-4xl font-semibold tracking-tight">What I do</h2>
+        <p class="mt-5 text-fg-dim leading-relaxed max-w-md">
+          I'm a full-stack developer and designer based on building complete products — not just screens or endpoints. Most projects start on a whiteboard, move through Figma, and end up as a Django or Flutter app running in production. I care about the parts users never see: load times, clean data models, and forms that actually work.
+        </p>
+        <p class="mt-4 text-fg-dim leading-relaxed max-w-md">
+          Lately I've been building learning platforms, service-delivery apps, and the kind of small business tools that save someone an afternoon of spreadsheet work every week.
+        </p>
+        <a href="#contact" class="mt-8 inline-flex items-center gap-2 text-brand-teal text-sm font-medium link-underline">
+          Work with me
+        </a>
+      </div>
+
+      <div class="grid sm:grid-cols-2 gap-5" data-reveal="up" data-delay="120">
+        <div class="service-card sm:col-span-2">
+          <div class="service-icon"><svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.6"><path stroke-linecap="round" stroke-linejoin="round" d="M17.25 6.75L22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3l-4.5 16.5"/></svg></div>
+          <h3 class="font-display font-semibold text-lg mt-4">Web Development</h3>
+          <p class="text-sm text-fg-dim mt-2 leading-relaxed">Django and React applications built for speed, clean data models, and easy maintenance — from first commit to deployment.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon"><svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.6"><path stroke-linecap="round" stroke-linejoin="round" d="M9.53 16.122a3 3 0 00-5.78 1.128 2.25 2.25 0 01-2.4 2.245 4.5 4.5 0 008.4-2.245c0-.399-.078-.78-.22-1.128zm0 0a15.998 15.998 0 003.388-1.62m-5.043-.025a15.994 15.994 0 011.622-3.395m3.42 3.42a6.774 6.774 0 00-3.42-3.42m3.42 3.42a6.774 6.774 0 013.42 3.42m-5.042-6.842a6.773 6.773 0 013.42-3.42"/></svg></div>
+          <h3 class="font-display font-semibold text-lg mt-4">UI/UX Design</h3>
+          <p class="text-sm text-fg-dim mt-2 leading-relaxed">Interfaces designed in Figma with real content, then built to match — no gap between the mockup and the shipped product.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon"><svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.6"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 3h1.386c.51 0 .955.343 1.087.836l.383 1.437M7.5 14.25a3 3 0 00-3 3h15.75m-12.75-3h11.218c1.121-2.3 1.826-4.65 2.223-7.026a1.5 1.5 0 00-1.474-1.75H5.106M7.5 14.25L5.106 5.174M6 18.75a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm12.75 0a.75.75 0 11-1.5 0 .75.75 0 011.5 0z"/></svg></div>
+          <h3 class="font-display font-semibold text-lg mt-4">E-commerce Solutions</h3>
+          <p class="text-sm text-fg-dim mt-2 leading-relaxed">Storefronts, checkout flows, and inventory dashboards that hold up under real traffic and real orders.</p>
+        </div>
+        <div class="service-card sm:col-span-2">
+          <div class="service-icon"><svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.6"><path stroke-linecap="round" stroke-linejoin="round" d="M9.53 16.122a3 3 0 00-5.78 1.128M9.53 16.122L15 6.75m-5.47 9.372L4.5 8.25m10.5-1.5l4.5 8.25M9 3.75h6a2.25 2.25 0 012.25 2.25v.75H6.75v-.75A2.25 2.25 0 019 3.75z"/></svg></div>
+          <h3 class="font-display font-semibold text-lg mt-4">Brand Identity</h3>
+          <p class="text-sm text-fg-dim mt-2 leading-relaxed">Logos, color systems, and type scales that carry through consistently from a business card to a full web app.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills" class="py-28 border-t border-white/6 bg-surface/40">
+  <div class="max-w-6xl mx-auto px-6 lg:px-8">
+    <h2 data-reveal="up" class="font-display text-3xl sm:text-4xl font-semibold tracking-tight">Tools &amp; technologies</h2>
+    <p data-reveal="up" data-delay="80" class="mt-4 text-fg-dim max-w-lg">The stack I reach for most, grouped by where it fits in a project.</p>
+
+    <div class="mt-14 grid md:grid-cols-3 gap-10">
+      <div data-reveal="up" data-delay="0">
+        <h3 class="text-xs font-mono uppercase tracking-wider text-brand-teal mb-4">Frontend</h3>
+        <div class="flex flex-wrap gap-2.5">
+          <span class="skill-chip">React</span><span class="skill-chip">JavaScript</span><span class="skill-chip">Tailwind CSS</span><span class="skill-chip">HTML5 &amp; CSS3</span>
+        </div>
+      </div>
+      <div data-reveal="up" data-delay="120">
+        <h3 class="text-xs font-mono uppercase tracking-wider text-brand-cyan mb-4">Backend</h3>
+        <div class="flex flex-wrap gap-2.5">
+          <span class="skill-chip">Django</span><span class="skill-chip">Python</span><span class="skill-chip">PostgreSQL</span><span class="skill-chip">REST APIs</span>
+        </div>
+      </div>
+      <div data-reveal="up" data-delay="240">
+        <h3 class="text-xs font-mono uppercase tracking-wider text-brand-magenta mb-4">Design &amp; tools</h3>
+        <div class="flex flex-wrap gap-2.5">
+          <span class="skill-chip">Figma</span><span class="skill-chip">Adobe XD</span><span class="skill-chip">Git &amp; GitHub</span><span class="skill-chip">Cloudinary</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects" class="py-28 border-t border-white/6">
+  <div class="max-w-6xl mx-auto px-6 lg:px-8">
+    <h2 data-reveal="up" class="font-display text-3xl sm:text-4xl font-semibold tracking-tight">Selected work</h2>
+    <p data-reveal="up" data-delay="80" class="mt-4 text-fg-dim max-w-lg">A few recent builds — swap these for your own case studies and screenshots.</p>
+
+    <div class="mt-16 space-y-20">
+
+      <article data-reveal="up" class="grid lg:grid-cols-2 gap-10 items-center">
+        <div class="project-frame order-2 lg:order-1">
+          <div class="project-frame__bar"><span></span><span></span><span></span></div>
+          <div class="project-frame__body bg-grad-primary/10">
+            <span class="font-display text-fg-faint">LMS preview</span>
+          </div>
+        </div>
+        <div class="order-1 lg:order-2">
+          <span class="text-xs font-mono uppercase tracking-wider text-brand-teal">Django · PWA · PostgreSQL</span>
+          <h3 class="font-display text-2xl font-semibold mt-3">EGC Learning Management System</h3>
+          <p class="mt-3 text-fg-dim leading-relaxed max-w-md">A multi-app Django platform at egccenter.site with offline-ready PWA support and a timer-based, auto-graded quiz engine, plus dedicated modules for fees, library, lectures, and attendance.</p>
+          <div class="mt-5 flex gap-5 text-sm">
+            <a href="#" class="link-underline text-fg font-medium">Live site</a>
+            <a href="#" class="link-underline text-fg-dim">Source code</a>
+          </div>
+        </div>
+      </article>
+
+      <article data-reveal="up" class="grid lg:grid-cols-2 gap-10 items-center">
+        <div>
+          <span class="text-xs font-mono uppercase tracking-wider text-brand-cyan">Flutter · Dart · UI/UX</span>
+          <h3 class="font-display text-2xl font-semibold mt-3">WaterLink</h3>
+          <p class="mt-3 text-fg-dim leading-relaxed max-w-md">A water delivery app built around a navy-and-teal "Family of Blue" palette, with a swipeable onboarding flow and animated dot indicators for first-time users.</p>
+          <div class="mt-5 flex gap-5 text-sm">
+            <a href="#" class="link-underline text-fg font-medium">Live site</a>
+            <a href="#" class="link-underline text-fg-dim">Source code</a>
+          </div>
+        </div>
+        <div class="project-frame">
+          <div class="project-frame__bar"><span></span><span></span><span></span></div>
+          <div class="project-frame__body bg-grad-accent/10">
+            <span class="font-display text-fg-faint">App preview</span>
+          </div>
+        </div>
+      </article>
+
+      <article data-reveal="up" class="grid lg:grid-cols-2 gap-10 items-center">
+        <div class="project-frame order-2 lg:order-1">
+          <div class="project-frame__bar"><span></span><span></span><span></span></div>
+          <div class="project-frame__body bg-grad-primary/10">
+            <span class="font-display text-fg-faint">Site preview</span>
+          </div>
+        </div>
+        <div class="order-1 lg:order-2">
+          <span class="text-xs font-mono uppercase tracking-wider text-brand-magenta">Design system</span>
+          <h3 class="font-display text-2xl font-semibold mt-3">RSN Portfolio</h3>
+          <p class="mt-3 text-fg-dim leading-relaxed max-w-md">This site — a dark, animated single-page portfolio with scroll-triggered reveals, a live contact pipeline, and a component system built to be reused across future client sites.</p>
+          <div class="mt-5 flex gap-5 text-sm">
+            <a href="#" class="link-underline text-fg font-medium">Live site</a>
+            <a href="#" class="link-underline text-fg-dim">Source code</a>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section id="process" class="py-28 border-t border-white/6 bg-surface/40">
+  <div class="max-w-6xl mx-auto px-6 lg:px-8">
+    <h2 data-reveal="up" class="font-display text-3xl sm:text-4xl font-semibold tracking-tight">How a project runs</h2>
+    <p data-reveal="up" data-delay="80" class="mt-4 text-fg-dim max-w-lg">Four stages, start to finish — no surprises in between.</p>
+
+    <div class="mt-16 grid sm:grid-cols-2 lg:grid-cols-4 gap-8 relative">
+      <div class="hidden lg:block absolute top-6 left-[12%] right-[12%] h-px bg-white/8"></div>
+
+      <div data-reveal="up" data-delay="0" class="relative">
+        <span class="process-num">01</span>
+        <h3 class="font-display font-semibold text-lg mt-5">Discover</h3>
+        <p class="text-sm text-fg-dim mt-2 leading-relaxed">We map goals, users, and constraints before any design work starts.</p>
+      </div>
+      <div data-reveal="up" data-delay="100" class="relative">
+        <span class="process-num">02</span>
+        <h3 class="font-display font-semibold text-lg mt-5">Design</h3>
+        <p class="text-sm text-fg-dim mt-2 leading-relaxed">Wireframes move to full Figma screens using real content, reviewed together.</p>
+      </div>
+      <div data-reveal="up" data-delay="200" class="relative">
+        <span class="process-num">03</span>
+        <h3 class="font-display font-semibold text-lg mt-5">Develop</h3>
+        <p class="text-sm text-fg-dim mt-2 leading-relaxed">Build in short cycles with staging links so you see progress every week.</p>
+      </div>
+      <div data-reveal="up" data-delay="300" class="relative">
+        <span class="process-num">04</span>
+        <h3 class="font-display font-semibold text-lg mt-5">Launch &amp; support</h3>
+        <p class="text-sm text-fg-dim mt-2 leading-relaxed">Deploy, monitor, and stay on for fixes and iteration after launch.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section id="testimonials" class="py-28 border-t border-white/6">
+  <div class="max-w-3xl mx-auto px-6 lg:px-8 text-center" data-reveal="fade">
+    <svg class="w-8 h-8 mx-auto text-brand-teal/60" fill="currentColor" viewBox="0 0 32 32"><path d="M9.352 4C4.456 7.456 1 13.12 1 19.36 1 24.416 4.352 28 8.976 28c4.288 0 7.36-3.36 7.36-7.36 0-3.696-2.576-6.416-6.032-6.416-.688 0-1.664.144-1.888.288.464-3.088 3.376-6.72 6.288-8.464L9.352 4zm16.512 0C20.968 7.456 17.512 13.12 17.512 19.36c0 5.056 3.36 8.64 7.976 8.64 4.288 0 7.36-3.36 7.36-7.36 0-3.696-2.576-6.416-6.032-6.416-.688 0-1.664.144-1.888.288.464-3.088 3.376-6.72 6.288-8.464L25.864 4z"/></svg>
+
+    <div id="testimonial-track" class="relative mt-8 min-h-[160px]">
+      <blockquote class="testimonial-slide" data-index="0">
+        <p class="text-xl sm:text-2xl font-display leading-snug text-fg">"RSN turned a rough set of notes into a working platform faster than we expected — and kept it easy for our own team to update afterward."</p>
+        <footer class="mt-6 text-sm text-fg-dim">Project collaborator · Education sector</footer>
+      </blockquote>
+      <blockquote class="testimonial-slide hidden" data-index="1">
+        <p class="text-xl sm:text-2xl font-display leading-snug text-fg">"Clear communication throughout, and the final build matched the designs almost pixel for pixel. Exactly the process we needed."</p>
+        <footer class="mt-6 text-sm text-fg-dim">Client · Small business</footer>
+      </blockquote>
+      <blockquote class="testimonial-slide hidden" data-index="2">
+        <p class="text-xl sm:text-2xl font-display leading-snug text-fg">"Good instincts on both the design and the technical side — rare to get both from one person."</p>
+        <footer class="mt-6 text-sm text-fg-dim">Client · App project</footer>
+      </blockquote>
+    </div>
+
+    <div id="testimonial-dots" class="flex items-center justify-center gap-2 mt-8">
+      <button class="dot dot--active" data-go="0" aria-label="Testimonial 1"></button>
+      <button class="dot" data-go="1" aria-label="Testimonial 2"></button>
+      <button class="dot" data-go="2" aria-label="Testimonial 3"></button>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="py-28 border-t border-white/6 bg-surface/40">
+  <div class="max-w-6xl mx-auto px-6 lg:px-8 grid lg:grid-cols-[1fr,0.8fr] gap-14">
+    <div data-reveal="up">
+      <h2 class="font-display text-3xl sm:text-4xl font-semibold tracking-tight">Start a project</h2>
+      <p class="mt-4 text-fg-dim max-w-md">Tell me a bit about what you need — I reply within a day, usually sooner.</p>
+
+      <form id="contact-form" class="mt-10 space-y-5" method="post" action="{% url 'portfolio:contact' %}" novalidate>
+        {% csrf_token %}
+        <div class="grid sm:grid-cols-2 gap-5">
+          <div class="field">
+            <label for="name" class="field-label">Name</label>
+            <input id="name" name="name" type="text" required class="field-input" placeholder="Your name">
+          </div>
+          <div class="field">
+            <label for="email" class="field-label">Email</label>
+            <input id="email" name="email" type="email" required class="field-input" placeholder="you@example.com">
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="service" class="field-label">Service you need</label>
+          <div class="relative">
+            <select id="service" name="service" required class="field-input appearance-none pr-10">
+              <option value="" disabled selected>Select a service</option>
+              <option value="web_development">Web Development</option>
+              <option value="ui_ux_design">UI/UX Design</option>
+              <option value="ecommerce">E-commerce Solutions</option>
+              <option value="brand_identity">Brand Identity</option>
+              <option value="other">Other</option>
+            </select>
+            <svg class="pointer-events-none absolute right-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-fg-faint" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="message" class="field-label">Project details</label>
+          <textarea id="message" name="message" rows="5" required class="field-input resize-none" placeholder="What are you building, and what's your timeline?"></textarea>
+        </div>
+
+        <button type="submit" id="submit-btn" class="btn-magnetic w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-full bg-grad-primary text-ink font-semibold px-8 py-3.5 text-sm shadow-glow-teal hover:shadow-[0_0_55px_-6px_rgba(45,212,196,.6)] transition-all duration-300 disabled:opacity-60">
+          <span id="submit-label">Send message</span>
+        </button>
+
+        <p id="form-status" class="text-sm mt-2 hidden"></p>
+      </form>
+    </div>
+
+    <div data-reveal="up" data-delay="120" class="space-y-6">
+      <div class="contact-card">
+        <p class="text-xs font-mono uppercase tracking-wider text-fg-faint">Email</p>
+        <a href="mailto:hello@rsn.dev" class="mt-2 block text-fg font-medium link-underline">hello@rsn.dev</a>
+      </div>
+      <div class="contact-card">
+        <p class="text-xs font-mono uppercase tracking-wider text-fg-faint">WhatsApp</p>
+        <a href="https://wa.me/10000000000" target="_blank" rel="noopener" class="mt-2 block text-fg font-medium link-underline">Chat directly</a>
+      </div>
+      <div class="contact-card">
+        <p class="text-xs font-mono uppercase tracking-wider text-fg-faint">Elsewhere</p>
+        <div class="mt-3 flex gap-4">
+          <a href="#" class="social-icon" aria-label="GitHub"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-5 h-5" fill="currentColor"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.09 3.29 9.4 7.86 10.93.57.1.78-.25.78-.55 0-.27-.01-1.16-.02-2.1-3.2.7-3.87-1.36-3.87-1.36-.53-1.34-1.29-1.7-1.29-1.7-1.05-.72.08-.71.08-.71 1.17.08 1.78 1.2 1.78 1.2 1.03 1.77 2.71 1.26 3.37.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.68 0-1.26.45-2.28 1.19-3.09-.12-.29-.52-1.46.11-3.04 0 0 .97-.31 3.18 1.18a11 11 0 015.79 0c2.2-1.49 3.17-1.18 3.17-1.18.64 1.58.24 2.75.12 3.04.74.81 1.19 1.83 1.19 3.09 0 4.41-2.69 5.39-5.25 5.67.41.36.78 1.06.78 2.14 0 1.55-.01 2.79-.01 3.17 0 .3.2.66.79.55A10.52 10.52 0 0023.5 12C23.5 5.65 18.35.5 12 .5z"/></svg></a>
+          <a href="#" class="social-icon" aria-label="LinkedIn"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-5 h-5" fill="currentColor"><path d="M20.45 20.45h-3.56v-5.58c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.68H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.38-1.85 3.61 0 4.28 2.38 4.28 5.47v6.27zM5.34 7.43a2.07 2.07 0 110-4.13 2.07 2.07 0 010 4.13zM7.12 20.45H3.56V9h3.56v11.45z"/></svg></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<!-- FOOTER -->
+<footer class="border-t border-white/6 py-10">
+  <div class="max-w-6xl mx-auto px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+    <p class="text-sm text-fg-faint">© <span id="year"></span> Raja Salman Nadeem. All rights reserved.</p>
+    <button id="back-to-top" class="text-sm text-fg-dim hover:text-brand-teal transition-colors duration-300">Back to top ↑</button>
+  </div>
+</footer>
+
+<!-- STICKY WHATSAPP -->
+<a href="https://wa.me/10000000000?text=Hi%20Raja%2C%20I%27d%20like%20to%20talk%20about%20a%20project"
+   target="_blank" rel="noopener"
+   id="whatsapp-btn"
+   aria-label="Chat on WhatsApp"
+   class="fixed right-5 bottom-6 sm:right-7 sm:bottom-8 z-50 grid place-items-center w-14 h-14 rounded-full bg-[#25D366] shadow-[0_8px_30px_-6px_rgba(37,211,102,.6)] hover:scale-108 transition-transform duration-300">
+  <span class="whatsapp-ring"></span>
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-7 h-7 relative" fill="white"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.79.47 3.47 1.29 4.93L2 22l5.31-1.39a9.87 9.87 0 004.73 1.2h.01c5.46 0 9.91-4.45 9.91-9.91C21.96 6.45 17.5 2 12.04 2zm5.8 14.02c-.24.68-1.4 1.31-1.93 1.36-.5.05-1.02.24-3.4-.75-2.87-1.2-4.71-4.16-4.85-4.35-.14-.19-1.16-1.55-1.16-2.95 0-1.4.73-2.09.99-2.38.26-.28.57-.35.76-.35.19 0 .38 0 .55.01.18.01.42-.07.65.5.24.58.82 2 .89 2.15.07.14.12.31.02.5-.09.19-.14.31-.28.47-.14.17-.29.37-.42.5-.14.14-.28.29-.12.57.16.28.71 1.17 1.53 1.9 1.05.94 1.94 1.23 2.22 1.37.28.14.44.12.6-.07.16-.19.68-.79.87-1.06.19-.28.37-.23.62-.14.26.09 1.63.77 1.9.91.28.14.46.21.53.33.07.12.07.68-.17 1.36z"/></svg>
+</a>
+
+<script src="{% static 'portfolio/js/main.js' %}"></script>
+</body>
+</html>
